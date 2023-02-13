@@ -201,19 +201,17 @@ function getRoverPhoto() {
   const spiritBirth = new Date("2004-01-05");
   const spiritDeath = new Date("2010-03-21");
   const opportunityDeath = new Date("2018-06-11");
-  console.log(dateInputEl, dateInputEl.val(), currentDate);
-  console.log(spiritBirth, spiritDeath, opportunityDeath);
 
   if (currentDate < spiritBirth) {
     console.log("Try a date after Jan 5th 2004");
   } else if (spiritBirth <= currentDate && currentDate <= spiritDeath) {
-    console.log("Spirit picture");
+    console.log("Displaying an image from the Spirit rover.");
     getSpiritRoverPhoto();
   } else if (spiritDeath < currentDate && currentDate <= opportunityDeath) {
-    console.log("Opportunity picture");
+    console.log("Displaying an image from the Opportunity rover.");
     getOpportunityRoverPhoto();
   } else if (opportunityDeath < currentDate) {
-    console.log("Curiosity picture");
+    console.log("Displaying an image from the Curiostity rover.");
     getCuriosityRoverPhoto();
   } else {
     console.error("Issue with getRoverPhoto() date call");

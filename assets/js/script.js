@@ -39,6 +39,7 @@ searchButtonEl.on("click", function (event) {
 
   getWeather();
   getAstronomyPhoto();
+  getRoverManifests();
   getRoverPhoto();
 });
 
@@ -132,14 +133,89 @@ function getAstronomyPhoto() {
     });
 }
 
-// Gets Photo from Rover
-function getRoverPhoto() {
-  const queryURL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${dateInputEl.val()}&api_key=${nasaAPIKey}`;
+function getRoverManifests() {
+  // These rover manifests contain information regarding the time period that each rover was active
+  // Useful for determining which rover to grab photos from
+  // Not for user
+  const queryURLSpirit = `https://api.nasa.gov/mars-photos/api/v1/manifests/Spirit/?api_key=${nasaAPIKey}`;
+  const queryURLOpportunity = `https://api.nasa.gov/mars-photos/api/v1/manifests/Opportunity/?api_key=${nasaAPIKey}`;
+  const queryURLCuriosity = `https://api.nasa.gov/mars-photos/api/v1/manifests/Curiosity/?api_key=${nasaAPIKey}`;
+
+  fetch(queryURLSpirit)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+  fetch(queryURLOpportunity)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+
+  fetch(queryURLCuriosity)
+    .then((response) => response.json())
+    .then((data) => console.log(data));
+}
+
+function getSpiritRoverPhoto() {
+  const queryURL = `https://api.nasa.gov/mars-photos/api/v1/rovers/spirit/photos?earth_date=${dateInputEl.val()}&api_key=${nasaAPIKey}&camera=fhaz`;
 
   fetch(queryURL)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-      document.querySelector("#rover-photo").src = data.photos[11].img_src;
+
+      document.querySelector("#rover-photo").src =
+        data?.photos[0]?.img_src ??
+        "./assets/images/rover_missing_src_catch.jpg";
     });
+}
+
+function getOpportunityRoverPhoto() {
+  const queryURL = `https://api.nasa.gov/mars-photos/api/v1/rovers/opportunity/photos?earth_date=${dateInputEl.val()}&api_key=${nasaAPIKey}&camera=fhaz`;
+
+  fetch(queryURL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      document.querySelector("#rover-photo").src =
+        data?.photos[0]?.img_src ??
+        "./assets/images/rover_missing_src_catch.jpg";
+    });
+}
+
+function getCuriosityRoverPhoto() {
+  const queryURL = `https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=${dateInputEl.val()}&api_key=${nasaAPIKey}&camera=navcam`;
+
+  fetch(queryURL)
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data);
+
+      document.querySelector("#rover-photo").src =
+        data?.photos[0]?.img_src ??
+        "./assets/images/rover_missing_src_catch.jpg";
+    });
+}
+
+function getRoverPhoto() {
+  const currentDate = new Date(dateInputEl.val());
+  const spiritBirth = new Date("2004-01-05");
+  const spiritDeath = new Date("2010-03-21");
+  const opportunityDeath = new Date("2018-06-11");
+  console.log(dateInputEl, dateInputEl.val(), currentDate);
+  console.log(spiritBirth, spiritDeath, opportunityDeath);
+
+  if (currentDate < spiritBirth) {
+    console.log("Try a date after Jan 5th 2004");
+  } else if (spiritBirth <= currentDate && currentDate <= spiritDeath) {
+    console.log("Spirit picture");
+    getSpiritRoverPhoto();
+  } else if (spiritDeath < currentDate && currentDate <= opportunityDeath) {
+    console.log("Opportunity picture");
+    getOpportunityRoverPhoto();
+  } else if (opportunityDeath < currentDate) {
+    console.log("Curiosity picture");
+    getCuriosityRoverPhoto();
+  } else {
+    console.error("Issue with getRoverPhoto() date call");
+  }
 }

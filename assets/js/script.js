@@ -37,10 +37,13 @@ searchButtonEl.on("click", function (event) {
   console.log(searchValue);
   console.log(locationInputEl.val());
 
+
+  getEarthPhoto();
   getWeather();
   getAstronomyPhoto();
   getRoverManifests();
   getRoverPhoto();
+
 });
 
 // Gets weather based off user location and date input
@@ -133,6 +136,7 @@ function getAstronomyPhoto() {
     });
 }
 
+
 function getRoverManifests() {
   // These rover manifests contain information regarding the time period that each rover was active
   // Useful for determining which rover to grab photos from
@@ -217,3 +221,34 @@ function getRoverPhoto() {
     console.error("Issue with getRoverPhoto() date call");
   }
 }
+
+
+// Pulls Astronomy image from selected date
+function getAstronomyPhoto() {
+    var queryURL = "https://api.nasa.gov/planetary/apod?date=" + dateInputEl.val() + "&api_key=" + nasaAPIKey;
+    fetch(queryURL)
+        .then(response => response.json())
+        .then(response => {
+            document.querySelector('#space-photo').src = response.hdurl
+            // Facts about the photo
+            document.querySelector('#photo-description').textContent = response.explanation
+        })
+}
+
+
+
+// //    // var unsplashApiUrl = "https://api.unsplash.com/photos/?client_id=" + unsplashAPI;
+// //    // var unsplashApiUrl = "https://api.unsplash.com/search/photos/?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+//     var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+
+// pulls earth image
+
+function getEarthPhoto() {
+    var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+    fetch (unsplashApiUrl)
+    .then (response => response.json())
+    .then (response => {
+        document.querySelector("#earth-photo").src = response.urls.regular;
+    })
+}
+

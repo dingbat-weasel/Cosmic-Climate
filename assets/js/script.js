@@ -37,13 +37,11 @@ searchButtonEl.on("click", function (event) {
   console.log(searchValue);
   console.log(locationInputEl.val());
 
-
   getEarthPhoto();
   getWeather();
   getAstronomyPhoto();
   getRoverManifests();
   getRoverPhoto();
-
 });
 
 // Gets weather based off user location and date input
@@ -117,25 +115,6 @@ function getWeather() {
     currentUVEl.append(" mW/m" + "<sup>2</sup>");
   }
 }
-
-// Pulls Astronomy image from selected date
-function getAstronomyPhoto() {
-  var queryURL =
-    "https://api.nasa.gov/planetary/apod?date=" +
-    dateInputEl.val() +
-    "&api_key=" +
-    nasaAPIKey;
-
-  fetch(queryURL)
-    .then((response) => response.json())
-    .then((response) => {
-      document.querySelector("#space-photo").src = response.hdurl;
-      // Facts about the photo
-      document.querySelector("#photo-description").textContent =
-        response.explanation;
-    });
-}
-
 
 function getRoverManifests() {
   // These rover manifests contain information regarding the time period that each rover was active
@@ -222,20 +201,22 @@ function getRoverPhoto() {
   }
 }
 
-
 // Pulls Astronomy image from selected date
 function getAstronomyPhoto() {
-    var queryURL = "https://api.nasa.gov/planetary/apod?date=" + dateInputEl.val() + "&api_key=" + nasaAPIKey;
-    fetch(queryURL)
-        .then(response => response.json())
-        .then(response => {
-            document.querySelector('#space-photo').src = response.hdurl
-            // Facts about the photo
-            document.querySelector('#photo-description').textContent = response.explanation
-        })
+  var queryURL =
+    "https://api.nasa.gov/planetary/apod?date=" +
+    dateInputEl.val() +
+    "&api_key=" +
+    nasaAPIKey;
+  fetch(queryURL)
+    .then((response) => response.json())
+    .then((response) => {
+      document.querySelector("#space-photo").src = response.hdurl;
+      // Facts about the photo
+      document.querySelector("#photo-description").textContent =
+        response.explanation;
+    });
 }
-
-
 
 // //    // var unsplashApiUrl = "https://api.unsplash.com/photos/?client_id=" + unsplashAPI;
 // //    // var unsplashApiUrl = "https://api.unsplash.com/search/photos/?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
@@ -244,11 +225,14 @@ function getAstronomyPhoto() {
 // pulls earth image
 
 function getEarthPhoto() {
-    var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
-    fetch (unsplashApiUrl)
-    .then (response => response.json())
-    .then (response => {
-        document.querySelector("#earth-photo").src = response.urls.regular;
-    })
+  var unsplashApiUrl =
+    "https://api.unsplash.com/photos/random?query=" +
+    locationInputEl.val() +
+    "&client_id=" +
+    unsplashAPI;
+  fetch(unsplashApiUrl)
+    .then((response) => response.json())
+    .then((response) => {
+      document.querySelector("#earth-photo").src = response.urls.regular;
+    });
 }
-

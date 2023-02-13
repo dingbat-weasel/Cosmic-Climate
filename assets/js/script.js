@@ -40,6 +40,7 @@ searchButtonEl.on("click", function (event) {
 
     getWeather();
     getAstronomyPhoto();
+    getEarthPhoto();
 });
 
 // Gets weather based off user location and date input
@@ -113,4 +114,21 @@ function getAstronomyPhoto() {
             // Facts about the photo
             document.querySelector('#photo-description').textContent = response.explanation
         })
+}
+
+
+
+// //    // var unsplashApiUrl = "https://api.unsplash.com/photos/?client_id=" + unsplashAPI;
+// //    // var unsplashApiUrl = "https://api.unsplash.com/search/photos/?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+//     var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+
+// pulls earth image
+
+function getEarthPhoto() {
+    var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
+    fetch (unsplashApiUrl)
+    .then (response => response.json())
+    .then (response => {
+        document.querySelector("#earth-photo").src = response.urls.regular;
+    })
 }

@@ -1,3 +1,60 @@
+
+
+.hero {
+    overflow: hidden;
+}
+
+.hero.is-primary {
+    background-color: #fff;
+}
+
+.hero-body {
+    position: relative;
+    padding: 0;
+    margin: 0;
+}
+
+.earth-from-space {
+    margin: 0;
+    padding: 0;
+    height: 200px;
+    width: 100%;
+    object-fit: cover;
+    filter: brightness(70%);
+    
+}
+
+.title {
+    position: absolute;
+    z-index: 1;
+    top: 65px;
+    left: 50px;
+    text-shadow: 2px 2px 8px black;
+}
+
+.subtitle {
+    position: absolute;
+    z-index: 1;
+    top: 125px;
+    left: 55px;
+    text-shadow: 2px 2px 8px black;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 :root {
 
     /* colors */

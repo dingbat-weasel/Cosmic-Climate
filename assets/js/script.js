@@ -11,10 +11,9 @@ var today = dayjs().format("YYYY-MM-DD");
 var currentLocationEl = $("#current-location");
 var currentTempEl = $("#temp");
 var currentUVEl = $("#uv");
-
 var currentTempEl = $("#temp");
 
-var geoResultsEl = $("#geo-results");
+var spaceResultsEl = $("#space-results");
 
 // Date autocomplete
 $(function () {
@@ -42,6 +41,7 @@ searchButtonEl.on("click", function (event) {
   getAstronomyPhoto();
   getRoverManifests();
   getRoverPhoto();
+  getAsteroid();
 });
 
 // Gets weather based off user location and date input
@@ -234,5 +234,41 @@ function getEarthPhoto() {
     .then((response) => response.json())
     .then((response) => {
       document.querySelector("#earth-photo").src = response.urls.regular;
+    });
+}
+
+// Pulls nearest asteroid information
+function getAsteroid() {
+  var queryURL =
+    "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
+    dateInputEl.val() +
+    "&endDate=" +
+    dateInputEl.val() +
+    "&api_key=" +
+    nasaAPIKey;
+
+  var closestAsteroid = null;
+
+  fetch(queryURL)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (data) {
+      var asteroids = data.near_earth_objects[dateInputEl.val()];
+
+      for (var i = 0; i < asteroids.length; i++) {
+        var asteroid = asteroids[i];
+        var distance = parseFloat(
+          asteroid.close_approach_data[0].miss_distance.kilometers
+        );
+        closestAsteroid = asteroid;
+      }
+      spaceResultsEl.text(closestAsteroid.name);
+      spaceResultsEl.prepend("The closest asteroid to Earth is: ");
+      spaceResultsEl.append(
+        " with an estimated max diameter of " +
+          closestAsteroid.estimated_diameter.feet.estimated_diameter_max +
+          " feet."
+      );
     });
 }

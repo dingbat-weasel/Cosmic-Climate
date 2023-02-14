@@ -18,15 +18,15 @@
 
   <body>
     <div class="hero is-primary">
-        <div class="hero-body">
-            <img class="earth-from-space" src="./assets/images/nasa-yZygONrUBe8-unsplash.jpg" alt="Earth-from-space">
-            <p class="title">
-                Cosmic Climate
-            </p>
-            <p class="subtitle">
-                Hello! Hello! Hello!
-            </p>
-        </div>
+      <div class="hero-body">
+        <img
+          class="earth-from-space"
+          src="./assets/images/nasa-yZygONrUBe8-unsplash.jpg"
+          alt="Earth-from-space"
+        />
+        <p class="title">Cosmic Climate</p>
+        <p class="subtitle">Hello! Hello! Hello!</p>
+      </div>
     </div>
 
     <!-- sidebar -->
@@ -51,6 +51,43 @@
     </nav>
     </div> -->
     <!-- end of sidebar -->
+
+
+    <div class="tile is-ancestor mx-1">
+      <div class="tile is-vertical">
+        <div class="tile is-12">
+          <div class="tile is-parent is-vertical">
+            <!-- Search Form -->
+            <article class="tile is-child notification is-primary">
+              <div class="field">
+                <label class="label is-medium">Start Your Search Here!</label>
+                <div class="control" id="search-input">
+                  <input
+                    class="input"
+                    type="text"
+                    id="location-search"
+                    placeholder="Enter Location"
+                  />
+                  <input
+                    class="input"
+                    type="text"
+                    id="datepicker"
+                    autocomplete="off"
+                    placeholder="Enter Date"
+                  />
+                  <button class="button is-fullwidth" id="search-button">
+                    Search
+                  </button>
+                </div>
+              </div>
+            </article>
+            <!-- Earth Location Image -->
+            <article class="tile is-child notification is-warning">
+              <img src="" id="earth-photo" alt="" />
+            </article>
+          </div>
+          <div class="tile is-parent is-vertical">
+            <!-- Mars Rover Image -->
 
     <div class="container is-fluid">
       <div class="columns is-mobile">
@@ -85,6 +122,7 @@
           <p class="mb-0"><span id="uv"></span></p>
           <img src="" id="earth-photo" alt="" />
           <div class="tile is-parent">
+
             <article class="tile is-child notification is-info">
               <p class="title">How does it look on Mars today?</p>
               <p class="subtitle"></p>
@@ -95,6 +133,51 @@
                 />
               </figure>
             </article>
+
+            <!-- Earth Location Weather Data -->
+            <article class="tile is-child notification is-warning">
+              <h2 id="current-location"></h2>
+              <p class="mb-0"><span id="temp"></span></p>
+              <p class="mb-0"><span id="uv"></span></p>
+            </article>
+          </div>
+          <div class="tile is-parent is-4">
+            <article class="tile is-child notification is-success">
+              <div class="content">
+                <p class="title">Tall tile</p>
+                <p class="subtitle">With even more content</p>
+                <div class="content">
+                  <!-- Content -->
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <!-- Astronomy Photo of the Day -->
+        <div class="tile is-vertical is-8">
+          <!-- Image -->
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+              <p class="title"></p>
+              <p class="subtitle"></p>
+              <div class="content">
+                <div id="geo-results"></div>
+                <img src="" id="space-photo" alt="" />
+              </div>
+            </article>
+          </div>
+          <!-- Description -->
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-danger">
+              <p class="title"></p>
+              <p class="subtitle"></p>
+              <div class="content">
+                <p id="photo-description"></p>
+              </div>
+            </article>
+          </div>
+
           </div>
         </div>
 
@@ -103,6 +186,7 @@
           <div id="geo-results"></div>
           <img src="" id="space-photo" alt="" />
           <p id="photo-description"></p>
+
         </div>
       </div>
     </div>

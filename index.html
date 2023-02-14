@@ -52,6 +52,7 @@
     </div> -->
     <!-- end of sidebar -->
 
+
     <div class="tile is-ancestor mx-1">
       <div class="tile is-vertical">
         <div class="tile is-12">
@@ -87,6 +88,41 @@
           </div>
           <div class="tile is-parent is-vertical">
             <!-- Mars Rover Image -->
+
+    <div class="container is-fluid">
+      <div class="columns is-mobile">
+        <div class="column is-one-quarter">
+          <div class="field">
+            <label class="label is-medium">Start Your Search Here!</label>
+            <div class="control" id="search-input">
+              <input
+                class="input"
+                type="text"
+                id="location-search"
+                placeholder="Enter Location"
+              />
+              <input
+                class="input"
+                type="text"
+                id="datepicker"
+                autocomplete="off"
+                placeholder="Enter Date"
+              />
+              <button class="button is-fullwidth" id="search-button">
+                Search
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          Earth Weather & Image Section Here
+          <h2 id="current-location"></h2>
+          <p class="mb-0"><span id="temp"></span></p>
+          <p class="mb-0"><span id="uv"></span></p>
+          <img src="" id="earth-photo" alt="" />
+          <div class="tile is-parent">
+
             <article class="tile is-child notification is-info">
               <p class="title">How does it look on Mars today?</p>
               <p class="subtitle"></p>
@@ -97,6 +133,7 @@
                 />
               </figure>
             </article>
+
             <!-- Earth Location Weather Data -->
             <article class="tile is-child notification is-warning">
               <h2 id="current-location"></h2>
@@ -140,6 +177,16 @@
               </div>
             </article>
           </div>
+
+          </div>
+        </div>
+
+        <div class="column">
+          Mars Weather & Image Section Here
+          <div id="geo-results"></div>
+          <img src="" id="space-photo" alt="" />
+          <p id="photo-description"></p>
+
         </div>
       </div>
     </div>

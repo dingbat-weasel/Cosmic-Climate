@@ -1,17 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cosmic Climate</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
     <link rel="stylesheet" href="./assets/css/style.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <div class="hero is-primary">
         <div class="hero-body">
             <img class="earth-from-space" src="./assets/images/nasa-yZygONrUBe8-unsplash.jpg" alt="Earth-from-space">
@@ -25,7 +30,7 @@
     </div>
 
     <!-- sidebar -->
-<!-- <div class="sidebar-container">
+    <!-- <div class="sidebar-container">
     <nav class="sidebar">
         <header>
             <div class="image-text">
@@ -48,37 +53,67 @@
     <!-- end of sidebar -->
 
     <div class="container is-fluid">
-        <div class="columns is-mobile">
-            <div class="column is-one-quarter">
-                <div class="field">
-                    <label class="label is-medium">Start Your Search Here!</label>
-                    <div class="control" id="search-input">
-                        <input class="input" type="text" id="location-search" placeholder="Enter Location">
-                        <input class="input" type="text" id="datepicker" autocomplete="off" placeholder="Enter Date" />
-                        <button class="button is-fullwidth" id="search-button">Search</button>
-                    </div>
-                </div>
+      <div class="columns is-mobile">
+        <div class="column is-one-quarter">
+          <div class="field">
+            <label class="label is-medium">Start Your Search Here!</label>
+            <div class="control" id="search-input">
+              <input
+                class="input"
+                type="text"
+                id="location-search"
+                placeholder="Enter Location"
+              />
+              <input
+                class="input"
+                type="text"
+                id="datepicker"
+                autocomplete="off"
+                placeholder="Enter Date"
+              />
+              <button class="button is-fullwidth" id="search-button">
+                Search
+              </button>
             </div>
-
-            <div class="column">Earth Weather & Image Section Here
-                <h2 id="current-location"></h2>
-                <p class="mb-0"><span id="temp"></span></p>
-                <p class="mb-0"><span id="uv"></span></p>
-                <img src="" id="earth-photo" alt="">
-            </div>
-
-            <div class="column">Mars Weather & Image Section Here
-                <div id="geo-results"></div>
-                <img src="" id="space-photo" alt="">
-                <p id="photo-description"></p>
-            </div>
+          </div>
         </div>
+
+        <div class="column">
+          Earth Weather & Image Section Here
+          <h2 id="current-location"></h2>
+          <p class="mb-0"><span id="temp"></span></p>
+          <p class="mb-0"><span id="uv"></span></p>
+          <img src="" id="earth-photo" alt="" />
+          <div class="tile is-parent">
+            <article class="tile is-child notification is-info">
+              <p class="title">How does it look on Mars today?</p>
+              <p class="subtitle"></p>
+              <figure class="image is-4by3">
+                <img
+                  id="rover-photo"
+                  src="./assets/images/rover_default_splash.jpg"
+                />
+              </figure>
+            </article>
+          </div>
+        </div>
+
+        <div class="column">
+          Mars Weather & Image Section Here
+          <div id="geo-results"></div>
+          <img src="" id="space-photo" alt="" />
+          <p id="photo-description"></p>
+        </div>
+      </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script><script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+      crossorigin="anonymous"
+    ></script>
     <script src="./assets/js/script.js"></script>
-</body>
-
+  </body>
 </html>

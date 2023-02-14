@@ -151,9 +151,20 @@ function getSpiritRoverPhoto() {
     .then((data) => {
       console.log(data);
 
+      const sol = data?.photos[0]?.sol;
+
       document.querySelector("#rover-photo").src =
         data?.photos[0]?.img_src ??
         "./assets/images/rover_missing_src_catch.jpg";
+      document.querySelector(
+        "#rover_description"
+      ).textContent = `Martian days are known as sols. Here you are looking at a photo taken from the Spirit rover on it's ${sol} sol. Spirit's first sol was on January 4th, 2004 and it survived until March 21st, 2010. It was a healthy 2208 sols old when it died.`;
+      if (
+        document.querySelector("#rover-photo").src ===
+        "./assets/images/rover_missing_src_catch.jpg"
+      ) {
+        document.querySelector("#rover_description").textContent = "";
+      }
     });
 }
 
@@ -164,10 +175,20 @@ function getOpportunityRoverPhoto() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-
+      const sol = data?.photos[0]?.sol;
       document.querySelector("#rover-photo").src =
         data?.photos[0]?.img_src ??
         "./assets/images/rover_missing_src_catch.jpg";
+
+      document.querySelector(
+        "#rover_description"
+      ).textContent = `Martian days are known as sols. Here you are looking at a photo taken from the Opportunity rover on it's ${sol} sol. Opportunity's first sol was on January 25th, 2004 and it survived until June 11th, 2018. It was a healthy 5111 sols old when it died.`;
+      if (
+        document.querySelector("#rover-photo").src ===
+        "./assets/images/rover_missing_src_catch.jpg"
+      ) {
+        document.querySelector("#rover_description").textContent = "";
+      }
     });
 }
 
@@ -178,11 +199,44 @@ function getCuriosityRoverPhoto() {
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
-
+      const sol = data?.photos[0]?.sol;
       document.querySelector("#rover-photo").src =
         data?.photos[0]?.img_src ??
         "./assets/images/rover_missing_src_catch.jpg";
+
+      document.querySelector(
+        "#rover_description"
+      ).textContent = `Martian days are known as sols. Here you are looking at a photo taken from the Curiosity rover on it's ${sol} sol. Curiosity's first sol was on August 6th, 2012 and it is still active! Check back for updates from Curiosity.`;
+      if (
+        document.querySelector("#rover-photo").src ===
+        "./assets/images/rover_missing_src_catch.jpg"
+      ) {
+        document.querySelector("#rover_description").textContent = "";
+      }
     });
+}
+
+function writeMartianWeather() {
+  const marsWeather = [
+    "Dirt",
+    "Grey",
+    "Sand",
+    "Very No-Air",
+    "Robots Only",
+    "Rock",
+    "Space",
+    "Not Much",
+  ];
+
+  function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+  }
+
+  let weatherToday = marsWeather[getRandomInt(marsWeather.length)];
+
+  document.querySelector(
+    "#mars_weather"
+  ).textContent = `The weather on Mars today is: ${weatherToday}`;
 }
 
 function getRoverPhoto() {
@@ -190,6 +244,8 @@ function getRoverPhoto() {
   const spiritBirth = new Date("2004-01-05");
   const spiritDeath = new Date("2010-03-21");
   const opportunityDeath = new Date("2018-06-11");
+
+  writeMartianWeather();
 
   if (currentDate < spiritBirth) {
     console.log("Try a date after Jan 5th 2004");
@@ -200,7 +256,7 @@ function getRoverPhoto() {
     console.log("Displaying an image from the Opportunity rover.");
     getOpportunityRoverPhoto();
   } else if (opportunityDeath < currentDate) {
-    console.log("Displaying an image from the Curiostity rover.");
+    console.log("Displaying an image from the Curiosity rover.");
     getCuriosityRoverPhoto();
   } else {
     console.error("Issue with getRoverPhoto() date call");

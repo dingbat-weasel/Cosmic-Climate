@@ -12,6 +12,8 @@ var currentLocationEl = $("#current-location");
 var currentTempEl = $("#temp");
 var currentUVEl = $("#uv");
 var currentTempEl = $("#temp");
+var moonriseEl = $("#moonrise");
+var moonsetEl = $("#moonset");
 
 var spaceResultsEl = $("#space-results");
 
@@ -113,6 +115,10 @@ function getWeather() {
     currentUVEl.text(avgtemp[0].uv_index);
     currentUVEl.prepend("UV Index: ");
     currentUVEl.append(" mW/m" + "<sup>2</sup>");
+    moonriseEl.text(avgtemp[0].astro.moonrise);
+    moonriseEl.prepend("Moonrise: ");
+    moonsetEl.text(avgtemp[0].astro.moonset);
+    moonsetEl.prepend("Moonset: ");
   }
 }
 
@@ -264,7 +270,7 @@ function getAsteroid() {
         closestAsteroid = asteroid;
       }
       spaceResultsEl.text(closestAsteroid.name);
-      spaceResultsEl.prepend("The closest asteroid to Earth is: ");
+      spaceResultsEl.prepend("The closest asteroid to Earth is ");
       spaceResultsEl.append(
         " with an estimated max diameter of " +
           closestAsteroid.estimated_diameter.feet.estimated_diameter_max +

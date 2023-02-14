@@ -49,14 +49,14 @@ function getWeather() {
   console.log(dateInputEl.val());
 
   if (dateInputEl.val() === today) {
-    var queryURL =
+    var currentQueryURL =
       "https://api.weatherstack.com/current?access_key=" +
       weatherAPIKey +
       "&query=" +
       locationInputEl.val() +
       "&units=f";
 
-    fetch(queryURL)
+    fetch(currentQueryURL)
       .then(function (response) {
         if (response.ok) {
           console.log(response.status);
@@ -68,7 +68,7 @@ function getWeather() {
         currentForecast(data);
       });
   } else {
-    var queryURL =
+    var historyQueryURL =
       "https://api.weatherstack.com/historical?access_key=" +
       weatherAPIKey +
       "&query=" +
@@ -77,7 +77,7 @@ function getWeather() {
       dateInputEl.val() +
       "&units=f";
 
-    fetch(queryURL)
+    fetch(historyQueryURL)
       .then(function (response) {
         if (response.ok) {
           console.log(response.status);
@@ -203,12 +203,12 @@ function getRoverPhoto() {
 
 // Pulls Astronomy image from selected date
 function getAstronomyPhoto() {
-  var queryURL =
+  var apodQueryURL =
     "https://api.nasa.gov/planetary/apod?date=" +
     dateInputEl.val() +
     "&api_key=" +
     nasaAPIKey;
-  fetch(queryURL)
+  fetch(apodQueryURL)
     .then((response) => response.json())
     .then((response) => {
       document.querySelector("#space-photo").src = response.hdurl;

@@ -52,7 +52,7 @@
     </div> -->
     <!-- end of sidebar -->
 
-    <div class="tile is-ancestor mx-1">
+    <div class="tile is-ancestor mx-6 my-3">
       <div class="tile is-vertical">
         <div class="tile is-12">
           <div class="tile is-parent is-vertical">
@@ -60,6 +60,10 @@
             <article class="tile is-child notification is-primary">
               <div class="field">
                 <label class="label is-medium">Start Your Search Here!</label>
+                <label class="label is-smaller"
+                  >Enter a location on Earth and any date in the past to receive
+                  content based on that context.</label
+                >
                 <div class="control" id="search-input">
                   <input
                     class="input"
@@ -82,13 +86,15 @@
             </article>
             <!-- Earth Location Image -->
             <article class="tile is-child notification is-warning">
+              <label class="label is-smaller"
+                >An image from the surface of the planet.</label
+              >
               <img src="" id="earth-photo" alt="" />
             </article>
           </div>
           <div class="tile is-parent is-vertical">
             <!-- Mars Rover Image -->
             <article class="tile is-child notification is-info">
-              <p class="subtitle"></p>
               <p class="is-size-4 has-text-justified" id="mars_weather"></p>
               <figure class="image is-4by3">
                 <img
@@ -103,33 +109,24 @@
             </article>
             <!-- Earth Location Weather Data -->
             <article class="tile is-child notification is-warning">
-              <h2 id="current-location"></h2>
-              <p class="mb-0"><span id="temp"></span></p>
-              <p class="mb-0"><span id="uv"></span></p>
-              <p class="mb-0"><span id="moonrise"></span></p>
-              <p class="mb-0"><span id="moonset"></span></p>
-            </article>
-          </div>
-          <div class="tile is-parent is-4">
-            <article class="tile is-child notification is-success">
-              <div class="content">
-                <p class="title">Tall tile</p>
-                <p class="subtitle">With even more content</p>
-                <div class="content">
-                  <!-- Content -->
-                </div>
-              </div>
+              <label class="label is-smaller">Weather in the past!</label>
+              <h2 id="current-location is-size-3"></h2>
+              <p class="mb-0 is-size-3"><span id="temp"></span></p>
+              <p class="mb-0 is-size-3"><span id="uv"></span></p>
+              <p class="mb-0 is-size-3"><span id="moonrise"></span></p>
+              <p class="mb-0 is-size-3"><span id="moonset"></span></p>
             </article>
           </div>
         </div>
 
         <!-- Astronomy Photo of the Day -->
-        <div class="tile is-vertical is-8">
+        <div class="tile is-vertical is-12">
           <!-- Image -->
           <div class="tile is-parent">
-            <article class="tile is-child notification is-danger">
-              <p class="title"></p>
-              <p class="subtitle"></p>
+            <article class="tile is-child notification is-info">
+              <label class="label is-smaller"
+                >NASA had something to show us.</label
+              >
               <div class="content">
                 <div id="geo-results"></div>
                 <img src="" id="space-photo" alt="" />
@@ -138,7 +135,7 @@
           </div>
           <!-- Description -->
           <div class="tile is-parent">
-            <article class="tile is-child notification is-danger">
+            <article class="tile is-child notification is-info">
               <p class="title"></p>
               <p class="subtitle"></p>
               <div class="content">

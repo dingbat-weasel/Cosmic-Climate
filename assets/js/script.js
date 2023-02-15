@@ -280,9 +280,6 @@ function getAstronomyPhoto() {
     });
 }
 
-// //    // var unsplashApiUrl = "https://api.unsplash.com/photos/?client_id=" + unsplashAPI;
-// //    // var unsplashApiUrl = "https://api.unsplash.com/search/photos/?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
-//     var unsplashApiUrl = "https://api.unsplash.com/photos/random?query="+ locationInputEl.val() +"&client_id=" + unsplashAPI;
 
 // pulls earth image
 

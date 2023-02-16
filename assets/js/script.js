@@ -336,27 +336,32 @@ function getAsteroid() {
 
 const searchHistory = [];
 
-const srchBttn = document.querySelector("#search-button");
+// const srchBttn = document.querySelector("#search-button");
 
-srchBttn.addEventListener("click", saveSearch);
+// searchButtonEl.addEventListener("click", saveSearch);
+
+searchButtonEl.on("click", saveSearch)
 
 function saveSearch(){
-  const locationInput = document.querySelector("#location-search").value;
-  const dateInput = document.querySelector("#datepicker").value;
-  const timestamp = Date.now();
+  // const locationInput = document.querySelector("#location-search").value;
+  // const dateInput = document.querySelector("#datepicker").value;
+  // const timestamp = Date.now();
   
   const search = {
-    location: locationInput,
-    date: dateInput
+    location: locationInputEl.val(),
+    date: dateInputEl.val()
   };
   
-  localStorage.setItem(`search${timestamp}`, JSON.stringify(search));
+  // localStorage.setItem(`search${timestamp}`, JSON.stringify(search));
+  localStorage.setItem("User Search", JSON.stringify(search));
   searchHistory.push(search);
 }
   
  // get locations/dates from local storage
 const locations = JSON.parse(localStorage.getItem('Locations')) || [];
 const dates = JSON.parse(localStorage.getItem('Date')) || [];
+
+
 
 // combine locations and dates 
 const combined = [];
@@ -370,16 +375,26 @@ for (let i = 0; i < locations.length; i++) {
 
 // create new h4 elements for each combined string
 const recentSearchesDiv = document.getElementById('recent-searches');
-recentSearchesDiv.innerHTML = ''; 
+// recentSearchesDiv.innerHTML = ''; 
+
+const searchListItem = document.createElement("li");
+  const listItemText = document.createTextNode(localStorage.getItem("User Search"));
+  searchListItem.append(listItemText);
+
 for (let i = 0; i < combined.length; i++) {
-  const h4 = document.createElement('h4');
-  const text = document.createTextNode(combined[i]);
-  h4.appendChild(text);
-  h4.classList.add('recent-search');
-  h4.addEventListener('click', function() {
-    const [location, date] = combined[i].split(' ');
-  });
-  recentSearchesDiv.appendChild(h4);
-  
+  // const h4 = document.createElement('h4');
+  // const text = document.createTextNode(combined[i]);
+  // h4.appendChild(text);
+  // h4.classList.add('recent-search');
+  // h4.addEventListener('click', function() {
+  //   const [location, date] = combined[i].split(' ');
+  // });
+  // recentSearchesDiv.appendChild(h4);
+ 
+
+  // const searchListItem = document.createElement("li");
+  // const listItemText = document.createTextNode(search);
+  // searchListItem.append(listItemText);
+
 }
 

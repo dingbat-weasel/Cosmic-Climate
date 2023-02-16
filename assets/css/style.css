@@ -1,4 +1,6 @@
-
+/* *{
+    border: 1px solid red;
+} */
 
 .hero {
     overflow: hidden;
@@ -40,9 +42,11 @@
     text-shadow: 2px 2px 8px black;
 }
 
-.recent-searches{
-    display: flex;
-    flex-direction: column;
-    
+#recent-searches {
+    margin-top: 15px;
+    width: 100%;
 }
-
+.recent-top-border {
+    border-top: 2px solid #fff;
+    padding-top: 5px;
+}

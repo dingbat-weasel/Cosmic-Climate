@@ -1,4 +1,4 @@
-# Cosmic-Climate
+# Cosmic Climate
 Cosmic Climate is an application providing you with a city's weather data, even if you are curious about the historical weather. Cosmic Climate is the best choice for you, in addition you will get space information, along with photos, on any chosen date straight from NASA!
 
 ## User Story
@@ -26,8 +26,30 @@ All you need to do is to write city name and choose required date at (Start Your
 ## Mock-up
  Cosmic Climate App webpage URL:
 
-[Live Link to Deployed Application](https://dingbat-weasel.github.io/Cosmic-Climate//)
+[Live Link to Deployed Application](https://dingbat-weasel.github.io/Cosmic-Climate/)
 
 The following image demonstraites how the Cosmic Climate App looks once once the user navigates to the live page.
 
 ![A preview of Cosmic Climate](./assets/images/preview.png)
+
+## Collaborators
+
+Click below to see more work from our collaborators!
+
+[Isaac Perk](https://github.com/dingbat-weasel)
+
+[Shelby Francisco](https://github.com/Shelcisco)
+
+[Alaa Kouki](https://github.com/alaakouki)
+
+[Linh Tran](https://github.com/linhntran)
+
+## Credits
+
+APIs used in this application:
+
+[NASA](https://api.nasa.gov/)
+
+[Unsplash](https://unsplash.com/)
+
+[WeatherStack](https://weatherstack.com/)

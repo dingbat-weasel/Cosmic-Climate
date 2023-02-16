@@ -332,10 +332,6 @@ function getAsteroid() {
     });
 }
 
-//Saving Location and Date to local Storage
-
-const searchHistory = [];
-
 // const srchBttn = document.querySelector("#search-button");
 
 // searchButtonEl.addEventListener("click", saveSearch);
@@ -398,3 +394,10 @@ for (let i = 0; i < combined.length; i++) {
 
 }
 
+function Days(){
+  Day.push(input2.value)    
+  localStorage.setItem('Date', Day)
+  const newh5= document.createElement("h5")
+  newh5.innerHTML = input2.value
+  recentsearches.append(newh5)
+  }

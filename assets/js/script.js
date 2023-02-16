@@ -1,21 +1,22 @@
-var nasaAPIKey = "S7totvp99lZVSFYYOyQf6MWFjfqmkXftXQguSU6k";
-var weatherAPIKey = "cd6e68596f1256478d4f74585fda2916";
-var unsplashAPI = "6CNuMUBWat5swNnIhwjW2O3Wc4RgVRCKRbkaCK5i5gI";
+const nasaAPIKey = "S7totvp99lZVSFYYOyQf6MWFjfqmkXftXQguSU6k";
+const weatherAPIKey = "cd6e68596f1256478d4f74585fda2916";
+const unsplashAPI = "6CNuMUBWat5swNnIhwjW2O3Wc4RgVRCKRbkaCK5i5gI";
 
-var searchButtonEl = $("#search-button");
-var dateInputEl = $("#datepicker");
-var locationInputEl = $("#location-search");
-var searchInputEl = $("#search-input");
-var today = dayjs().format("YYYY-MM-DD");
+const searchButtonEl = $("#search-button");
+const dateInputEl = $("#datepicker");
+const locationInputEl = $("#location-search");
+const searchInputEl = $("#search-input");
+const searchHistoryListEl = $("#search-history");
+const searchHistory = [];
+const today = dayjs().format("YYYY-MM-DD");
 
-var currentLocationEl = $("#current-location");
-var currentTempEl = $("#temp");
-var currentUVEl = $("#uv");
-var currentTempEl = $("#temp");
-var moonriseEl = $("#moonrise");
-var moonsetEl = $("#moonset");
-
-var spaceResultsEl = $("#space-results");
+const currentLocationEl = $("#current-location");
+const currentTempEl = $("#temp");
+const currentUVEl = $("#uv");
+const moonriseEl = $("#moonrise");
+const moonsetEl = $("#moonset");
+const weatherTitleEl = $("#weather-title");
+const spaceResultsEl = $("#space-results");
 
 // Date autocomplete
 $(function () {
@@ -34,7 +35,7 @@ searchButtonEl.on("click", function (event) {
     return false;
   }
 
-  var searchValue = dateInputEl.val();
+  const searchValue = dateInputEl.val();
   console.log(searchValue);
   console.log(locationInputEl.val());
 
@@ -44,6 +45,8 @@ searchButtonEl.on("click", function (event) {
   getRoverManifests();
   getRoverPhoto();
   getAsteroid();
+
+  history(locationInputEl.val(), searchValue);
 });
 
 // Gets weather based off user location and date input
@@ -51,7 +54,7 @@ function getWeather() {
   console.log(dateInputEl.val());
 
   if (dateInputEl.val() === today) {
-    var currentQueryURL =
+    const currentQueryURL =
       "https://api.weatherstack.com/current?access_key=" +
       weatherAPIKey +
       "&query=" +
@@ -70,7 +73,7 @@ function getWeather() {
         currentForecast(data);
       });
   } else {
-    var historicalQueryURL =
+    const historicalQueryURL =
       "https://api.weatherstack.com/historical?access_key=" +
       weatherAPIKey +
       "&query=" +
@@ -93,6 +96,7 @@ function getWeather() {
   }
 
   function currentForecast(data) {
+    weatherTitleEl.text("Current weather!");
     currentLocationEl.text(data.location.name);
     currentLocationEl.prepend("Location: ");
     currentTempEl.text(data.current.temperature);
@@ -104,8 +108,9 @@ function getWeather() {
   }
 
   function historicalForecast(data) {
-    var avgtemp = Object.values(data.historical);
+    const avgtemp = Object.values(data.historical);
 
+    weatherTitleEl.text("Weather in the past!");
     currentLocationEl.text(data.location.name);
     currentLocationEl.prepend("Location: ");
     console.log(avgtemp);
@@ -265,12 +270,12 @@ function getRoverPhoto() {
 
 // Pulls Astronomy image from selected date
 function getAstronomyPhoto() {
-  var queryURL =
+  const apodQueryURL =
     "https://api.nasa.gov/planetary/apod?date=" +
     dateInputEl.val() +
     "&api_key=" +
     nasaAPIKey;
-  fetch(queryURL)
+  fetch(apodQueryURL)
     .then((response) => response.json())
     .then((response) => {
       document.querySelector("#space-photo").src = response.hdurl;
@@ -280,11 +285,9 @@ function getAstronomyPhoto() {
     });
 }
 
-
-// pulls earth image
-
+// Pulls earth image
 function getEarthPhoto() {
-  var unsplashApiUrl =
+  const unsplashApiUrl =
     "https://api.unsplash.com/photos/random?query=" +
     locationInputEl.val() +
     "&client_id=" +
@@ -298,7 +301,7 @@ function getEarthPhoto() {
 
 // Pulls nearest asteroid information
 function getAsteroid() {
-  var asteroidQueryURL =
+  const asteroidQueryURL =
     "https://api.nasa.gov/neo/rest/v1/feed?start_date=" +
     dateInputEl.val() +
     "&endDate=" +
@@ -306,18 +309,18 @@ function getAsteroid() {
     "&api_key=" +
     nasaAPIKey;
 
-  var closestAsteroid = null;
+  let closestAsteroid = null;
 
   fetch(asteroidQueryURL)
     .then(function (response) {
       return response.json();
     })
     .then(function (data) {
-      var asteroids = data.near_earth_objects[dateInputEl.val()];
+      const asteroids = data.near_earth_objects[dateInputEl.val()];
 
-      for (var i = 0; i < asteroids.length; i++) {
-        var asteroid = asteroids[i];
-        var distance = parseFloat(
+      for (i = 0; i < asteroids.length; i++) {
+        let asteroid = asteroids[i];
+        let distance = parseFloat(
           asteroid.close_approach_data[0].miss_distance.kilometers
         );
         closestAsteroid = asteroid;
@@ -332,72 +335,24 @@ function getAsteroid() {
     });
 }
 
-// const srchBttn = document.querySelector("#search-button");
-
-// searchButtonEl.addEventListener("click", saveSearch);
-
-searchButtonEl.on("click", saveSearch)
-
-function saveSearch(){
-  // const locationInput = document.querySelector("#location-search").value;
-  // const dateInput = document.querySelector("#datepicker").value;
-  // const timestamp = Date.now();
-  
-  const search = {
-    location: locationInputEl.val(),
-    date: dateInputEl.val()
-  };
-  
-  // localStorage.setItem(`search${timestamp}`, JSON.stringify(search));
-  localStorage.setItem("User Search", JSON.stringify(search));
-  searchHistory.push(search);
-}
-  
- // get locations/dates from local storage
-const locations = JSON.parse(localStorage.getItem('Locations')) || [];
-const dates = JSON.parse(localStorage.getItem('Date')) || [];
-
-
-
-// combine locations and dates 
-const combined = [];
-for (let i = 0; i < locations.length; i++) {
-  const location = locations[i];
-  const date = dates[i];
-  const combinedStr = `${location} ${date}`;
-  combined.push(combinedStr);
- 
-}
-
-// create new h4 elements for each combined string
-const recentSearchesDiv = document.getElementById('recent-searches');
-// recentSearchesDiv.innerHTML = ''; 
-
-const searchListItem = document.createElement("li");
-  const listItemText = document.createTextNode(localStorage.getItem("User Search"));
-  searchListItem.append(listItemText);
-
-for (let i = 0; i < combined.length; i++) {
-  // const h4 = document.createElement('h4');
-  // const text = document.createTextNode(combined[i]);
-  // h4.appendChild(text);
-  // h4.classList.add('recent-search');
-  // h4.addEventListener('click', function() {
-  //   const [location, date] = combined[i].split(' ');
-  // });
-  // recentSearchesDiv.appendChild(h4);
- 
-
-  // const searchListItem = document.createElement("li");
-  // const listItemText = document.createTextNode(search);
-  // searchListItem.append(listItemText);
-
-}
-
-function Days(){
-  Day.push(input2.value)    
-  localStorage.setItem('Date', Day)
-  const newh5= document.createElement("h5")
-  newh5.innerHTML = input2.value
-  recentsearches.append(newh5)
+// Saves the search history of cities to an array
+function history(locationInputEl, searchValue) {
+  if (locationInputEl && searchValue) {
+    if (searchHistory.indexOf(locationInputEl + " " + searchValue) === -1) {
+      searchHistory.push(locationInputEl + " " + searchValue);
+      listArray();
+    }
   }
+}
+
+// Lists array of search history
+function listArray() {
+  searchHistoryListEl.empty();
+  searchHistory.forEach(function (findings) {
+    const searchHistoryItem = $('<p class="list-group-item">');
+    searchHistoryItem.attr("data-value", findings);
+    searchHistoryItem.text(findings);
+    searchHistoryListEl.prepend(searchHistoryItem);
+  });
+  localStorage.setItem("searches", JSON.stringify(searchHistory));
+}

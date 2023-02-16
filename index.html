@@ -29,7 +29,6 @@
       </div>
     </div>
 
-
     <div class="tile is-ancestor mx-6 my-3">
       <div class="tile is-vertical">
         <div class="tile is-12">
@@ -59,17 +58,14 @@
                   <button class="button is-fullwidth" id="search-button">
                     Search
                   </button>
-                 
                 </div>
 
                 <div class="recent-search" id="recent-searches">
-                  <p class="recent-top-border"> Recent Searches</p>
-                  <!-- <h4></h4> -->
-                  <!-- <h5></h5> -->
-                  <!-- <h4></h4> -->
-                  <ul class="search-list"></ul>
-
-                  </div>
+                  <h1 class="recent-top-border">
+                    <label class="label is-medium">Recent Searches</label>
+                  </h1>
+                  <div class="list-group" id="search-history"></div>
+                </div>
               </div>
             </article>
             <!-- Mars Rover Image -->
@@ -90,19 +86,19 @@
           <div class="tile is-parent is-vertical">
             <!-- Earth Location Image -->
             <article class="tile is-child notification is-warning">
-              <label class="label is-smaller"
+              <label class="label is-medium"
                 >An image from the surface of the planet.</label
               >
               <img src="" id="earth-photo" alt="" />
             </article>
             <!-- Earth Location Weather Data -->
             <article class="tile is-child notification is-warning">
-              <label class="label is-smaller">Weather in the past!</label>
+              <label class="label is-medium" id="weather-title"></label>
               <h2 id="current-location is-size-3"></h2>
-              <p class="mb-0 is-size-3"><span id="temp"></span></p>
-              <p class="mb-0 is-size-3"><span id="uv"></span></p>
-              <p class="mb-0 is-size-3"><span id="moonrise"></span></p>
-              <p class="mb-0 is-size-3"><span id="moonset"></span></p>
+              <p class="mb-0 is-size-5"><span id="temp"></span></p>
+              <p class="mb-0 is-size-5"><span id="uv"></span></p>
+              <p class="mb-0 is-size-5"><span id="moonrise"></span></p>
+              <p class="mb-0 is-size-5"><span id="moonset"></span></p>
             </article>
           </div>
         </div>
@@ -112,11 +108,11 @@
           <!-- Image -->
           <div class="tile is-parent">
             <article class="tile is-child notification is-info">
-              <label class="label is-smaller"
+              <label class="label is-medium"
                 >NASA had something to show us.</label
               >
               <div class="content">
-                <div id="space-results"></div>
+                <label class="label is-medium" id="space-results"></label>
                 <img src="" id="space-photo" alt="" />
               </div>
             </article>

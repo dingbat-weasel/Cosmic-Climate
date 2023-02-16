@@ -332,54 +332,38 @@ function getAsteroid() {
     });
 }
 
-//Saving Location and Date to local Storage
+//Saving Location to local Storage
 
-const searchHistory = [];
-
+const Location= [];
+const input= document.querySelector("#location-search");
 const srchBttn = document.querySelector("#search-button");
+const recentsearches = document.querySelector(".recent-searches")
 
-srchBttn.addEventListener("click", saveSearch);
 
-function saveSearch(){
-  const locationInput = document.querySelector("#location-search").value;
-  const dateInput = document.querySelector("#datepicker").value;
-  const timestamp = Date.now();
+srchBttn.addEventListener("click", Loc);
+
+function Loc(){
+  Location.push(input.value)    
+  localStorage.setItem('Locations', Location)
+  const newh4= document.createElement("h4")
+  newh4.innerHTML = input.value
+recentsearches.append(newh4)
+  }
+
+
+  //Saving Dates to local storage 
   
-  const search = {
-    location: locationInput,
-    date: dateInput
-  };
-  
-  localStorage.setItem(`search${timestamp}`, JSON.stringify(search));
-  searchHistory.push(search);
-}
-  
- // get locations/dates from local storage
-const locations = JSON.parse(localStorage.getItem('Locations')) || [];
-const dates = JSON.parse(localStorage.getItem('Date')) || [];
+  const Day= [];
+const input2= document.querySelector("#datepicker");
+const srchBttn2 = document.querySelector("#search-button");
 
-// combine locations and dates 
-const combined = [];
-for (let i = 0; i < locations.length; i++) {
-  const location = locations[i];
-  const date = dates[i];
-  const combinedStr = `${location} ${date}`;
-  combined.push(combinedStr);
- 
-}
 
-// create new h4 elements for each combined string
-const recentSearchesDiv = document.getElementById('recent-searches');
-recentSearchesDiv.innerHTML = ''; 
-for (let i = 0; i < combined.length; i++) {
-  const h4 = document.createElement('h4');
-  const text = document.createTextNode(combined[i]);
-  h4.appendChild(text);
-  h4.classList.add('recent-search');
-  h4.addEventListener('click', function() {
-    const [location, date] = combined[i].split(' ');
-  });
-  recentSearchesDiv.appendChild(h4);
-  
-}
+srchBttn2.addEventListener("click", Days);
 
+function Days(){
+  Day.push(input2.value)    
+  localStorage.setItem('Date', Day)
+  const newh5= document.createElement("h5")
+  newh5.innerHTML = input2.value
+  recentsearches.append(newh5)
+  }

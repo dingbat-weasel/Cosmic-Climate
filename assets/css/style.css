@@ -39,3 +39,10 @@
     left: 55px;
     text-shadow: 2px 2px 8px black;
 }
+
+.recent-searches{
+    display: flex;
+    flex-direction: column;
+    
+}
+

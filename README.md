@@ -26,6 +26,8 @@ All you need to do is to write city name and choose required date at (Start Your
 ## Mock-up
  Cosmic Climate App webpage URL:
 
-The following image is how Cosmic Climate App webpage shows to
-users on desktop screens:
-![alt Cosmic Climate]()
+[Live Link to Deployed Application](https://dingbat-weasel.github.io/Cosmic-Climate//)
+
+The following image demonstraites how the Cosmic Climate App looks once once the user navigates to the live page.
+
+![A preview of Cosmic Climate](./assets/images/preview.png)
